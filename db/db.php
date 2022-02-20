@@ -1,17 +1,34 @@
 <?php
 
+function limpiar($dato){
+    $dato = trim($dato);
+    $dato = stripslashes($dato);
+    $dato = htmlspecialchars($dato);
+    return $dato;
+}
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "rootroot";
-	$database = "employees";
+function crear_conexion(){
+    $servername = "localhost";
+    $username = "root";
+    $password = "rootroot"; 
+    $dbname="employees";
+    
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname",$username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        //echo "conecta";
+        return $conn;
+        
+    }
+    catch(PDOException $e){
+        echo "Conexión fallida: " . $e->getMessage();
+    }
+}
 
-	try {
-		$conexion = new PDO("mysql:host=$servername;dbname=$database", $username, $password); 	 	 	 	 	 	
-		$conexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); 	 	 	 	 	 	
-	} catch (PDOException $ex) {
-		echo $ex->getMessage(); 	 	 	 	 	 	
-	}
+function cerrar_conexion($conn){
+    $conn = null;
+}
 	
 
 ?>
