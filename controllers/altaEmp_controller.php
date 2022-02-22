@@ -6,7 +6,7 @@ $conn = crear_conexion();
 require_once '../models/altaEmp_model.php';
 $departamentos = obtenerDepartamentos($conn);
 $titles = obtenerTitles($conn);
-
+/* aquí funciona el header ya que está antes que cualquier html */
 if (isset($_POST['volver'])) {
     header("location: ../views/inicio_view.php");
     //echo "volverr";
@@ -23,6 +23,8 @@ $mensajeErr = "";
 $mensajeOk = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") { 
+    /*aquí no funcionaría un header ya que antes he llamado a una vista 
+    por lo que ya habria html antes del header*/
         $first_name = limpiar($_POST["nombre"]);
         $last_name = limpiar($_POST["apellido"]);
         $birth_date = limpiar($_POST["fnac"]);
@@ -36,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         //var_dump($_POST);
         
         if ($hire_date < $fechaActu || $to_date <= $fechaActu) {
-            $mensajeErr = "Introduzca bien las fechas de alta y/o baja";
+            echo "Introduzca bien las fechas de alta y/o baja";
         }
         else{
             alta_empleado($conn,$emp_no,$birth_date,$first_name,$last_name,$gender,$hire_date);
@@ -47,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
             alta_titles_emp($conn,$emp_no,$title,$hire_date,$to_date);
     
-            $mensajeOk = "Empleado dado de alta correctamente";
+            echo "Empleado dado de alta correctamente";
         }
 }
 

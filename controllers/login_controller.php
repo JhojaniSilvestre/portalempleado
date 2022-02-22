@@ -43,7 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION['usuario'] = $resultado["emp_no"]; //num emp
             $_SESSION['clave'] = $resultado["last_name"]; //apellido
             $_SESSION['dept'] = $resultado["dept_no"]; //guardo el dept en el que está
-            
+            /*este header funciona ya que realmente estoy en index y 
+            allí no he llamado a ninguna vista antes que al controller*/
             header("location: views/inicio_view.php");
             /*
             var_dump($resultado);
