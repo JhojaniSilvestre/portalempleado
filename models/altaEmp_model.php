@@ -41,4 +41,67 @@ function obtenerTitles($conn){
     }
 }
 
+function generarNumEmp($conn){
+    $tiempoTotMin=0;
+    try {
+        $stmt = $conn->prepare("SELECT max(emp_no) FROM employees");
+        $stmt->execute();
+        
+        //compruebo si la select tiene resultados
+        if ($stmt->rowCount() > 0) {
+            $maxcod = $stmt->fetchColumn();
+        }
+        $emp_no = $maxcod + 1;
+        return $emp_no;
+        
+    }
+    catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+}
+
+function alta_empleado($conn,$emp_no,$birth_date,$first_name,$last_name,$gender,$hire_date){
+    try {
+        $insert = "INSERT INTO employees (emp_no,birth_date,first_name,last_name,gender,hire_date) 
+        VALUES ($emp_no,'$birth_date','$first_name','$last_name','$gender','$hire_date')";
+        $conn->exec($insert);
+
+	}catch(PDOException $e){
+		 echo "Error: ", $e-> getMessage();
+	}
+}
+
+function alta_dept_emp($conn,$emp_no,$dept_no,$hire_date,$to_date){
+    try {
+        $insert = "INSERT INTO dept_emp (emp_no,dept_no,from_date,to_date) 
+        VALUES ($emp_no,'$dept_no','$hire_date','$to_date')";
+        $conn->exec($insert);
+
+	}catch(PDOException $e){
+		 echo "Error: ", $e-> getMessage();
+	}
+}
+
+function alta_salaries_emp($conn,$emp_no,$salary,$hire_date,$to_date){
+    try {
+        $insert = "INSERT INTO salaries (emp_no,salary,from_date,to_date) 
+        VALUES ($emp_no,$salary,'$hire_date','$to_date')";
+        $conn->exec($insert);
+
+	}catch(PDOException $e){
+		 echo "Error: ", $e-> getMessage();
+	}
+}
+
+function alta_titles_emp($conn,$emp_no,$title,$hire_date,$to_date){
+    try {
+        $insert = "INSERT INTO titles (emp_no,title,from_date,to_date) 
+        VALUES ($emp_no,'$title','$hire_date','$to_date')";
+        $conn->exec($insert);
+
+	}catch(PDOException $e){
+		 echo "Error: ", $e-> getMessage();
+	}
+}
+
 ?>

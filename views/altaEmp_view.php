@@ -17,17 +17,25 @@
 		<div class="card border-success mb-3" style="max-width: 30rem;">
             <div class="card-header">Alta empleado</div>
                 <div class="card-body">
+                    <!--Imprimir mensaje -->
+                    <?php if(!empty($mensajeErr)){ ?>
+                        <br><p><?php echo $mensajeErr; ?></p>
+                    <?php }
+                    elseif(!empty($mensajeOk)){ ?>
+                       <br><p><?php echo $mensajeOk; ?></p>
+                    <?php } ?>
+                                        
                     <!--Se manda a sí mismo, en este caso altaEmp_conotroller es el que controla-->
                     <form id="" name="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="card-body">
                     
                     <div class="form-group">
-                        Nombre <input type="text" name="nombre" placeholder="nombre" class="form-control" required>
+                        Nombre <input type="text" name="nombre" placeholder="nombre" class="form-control">
                     </div>
                     <div class="form-group">
-                        Apellido <input type="text" name="apellido" placeholder="apellido" class="form-control" required>
+                        Apellido <input type="text" name="apellido" placeholder="apellido" class="form-control">
                     </div>
                     <div class="form-group">
-                        Fecha nacimiento <input type="date" name="fnac" placeholder="fecha nacimiento" class="form-control" required>
+                        Fecha nacimiento <input type="date" name="fnac" placeholder="fecha nacimiento" class="form-control">
                     </div>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" name="genero" value="M" checked>M
@@ -41,27 +49,28 @@
                         <!--recorro el array departamentos -->
                         <?php foreach($departamentos as $dept_no => $name_dept) : ?>
                             <?php echo "<option value='".$dept_no."'>".$name_dept."</option>"; ?>
-                        <?php endforeach;?>
+                        <?php endforeach; ?>
                     </select><br>
                     <B>Cargo: </B>
                     <select name="cargo" class="form-control">
                         <!--recorro el array titles -->
                         <?php foreach($titles as $title) : ?>
                             <?php echo "<option>".$title."</option>"; ?>
-                        <?php endforeach;?>
+                        <?php endforeach; ?>
                     </select><br>        
                     <div class="form-group">
-                        Salario <input type="number" name="salario" placeholder="salario" min="1000" class="form-control" required>
+                        Salario <input type="number" name="salario" placeholder="salario" min="1000" class="form-control">
                     </div>
                     <div class="form-group">
-                        Fecha alta <input type="date" name="hire_date" class="form-control" required>
+                        Fecha alta <input type="date" name="hire_date" class="form-control">
                     </div>
                     <div class="form-group">
-                        Fecha baja <input type="date" name="to_date" class="form-control" required>
+                        Fecha baja <input type="date" name="to_date" class="form-control">
                     </div>
-
                     <input type="submit" name="submit" value="Dar de alta" class="btn btn-warning disabled">
+                    <input type="submit" value="Volver" name="volver" class="btn btn-warning disabled">
                     </form>
+
                 </div>
             </div>
         </div>
