@@ -36,7 +36,7 @@
                 <?php if ($_SESSION['dept'] == "d003") { ?>
                     <a href="../controllers/altaEmp_controller.php" class="list-group-item list-group-item-action">Alta empleado</a>
                     <a href="../controllers/altaMasiva_controller.php" class="list-group-item list-group-item-action">Alta masiva empleados</a>
-                    <a href="#" class="list-group-item list-group-item-action">Modificar salario</a>
+                    <a href="../controllers/modSalario_controller.php" class="list-group-item list-group-item-action">Modificar salario</a>
                     <a href="#" class="list-group-item list-group-item-action">Vida laboral</a>
                     <a href="#" class="list-group-item list-group-item-action">Info departamento</a>
                     <a href="#" class="list-group-item list-group-item-action">Cambio departamento</a>
