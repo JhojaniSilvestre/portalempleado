@@ -38,7 +38,7 @@
                     <a href="../controllers/altaMasiva_controller.php" class="list-group-item list-group-item-action">Alta masiva empleados</a>
                     <a href="../controllers/modSalario_controller.php" class="list-group-item list-group-item-action">Modificar salario</a>
                     <a href="../controllers/vidaLab_controller.php" class="list-group-item list-group-item-action">Vida laboral</a>
-                    <a href="#" class="list-group-item list-group-item-action">Info departamento</a>
+                    <a href="../controllers/infoDept_controller.php" class="list-group-item list-group-item-action">Info departamento</a>
                     <a href="#" class="list-group-item list-group-item-action">Cambio departamento</a>
                     <a href="#" class="list-group-item list-group-item-action">Nuevo jefe departamento</a>
                     <a href="#" class="list-group-item list-group-item-action">Baja empleado</a>
