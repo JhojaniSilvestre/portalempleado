@@ -64,12 +64,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $grupoEmpleados[$emp_no]= array("emp_no"=>$emp_no,"first_name"=>$first_name,
                 "last_name"=>$last_name,"birth_date"=>$birth_date,"gender"=>$gender,"dept_no"=>$dept_no,
             "title"=>$title,"salary"=>$salary,"hire_date"=>$hire_date,"to_date"=>$to_date); 
-                    echo "Vehículo añadido correctamente";
+                    echo "empleado añadido correctamente";
                     //incremento el num de empleado para que no se repita 
                     $emp_no ++;
                 }
                 else {//Si el producto está en el carro de la compra, se avisa al usuario.
-                    echo "el vehículo ya encuentra en la cesta";
+                    echo "el empleado ya está añadido";
                 }//fin else
         }
         /* guardo el array de empleados en la sesion grupo y su num emp*/
