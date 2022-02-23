@@ -60,44 +60,79 @@ function generarNumEmp($conn){
     }
 }
 
-function alta_empleado($conn,$emp_no,$birth_date,$first_name,$last_name,$gender,$hire_date){
+function alta_empleado($conn,$grupoEmpleados){
     try {
-        $insert = "INSERT INTO employees (emp_no,birth_date,first_name,last_name,gender,hire_date) 
-        VALUES ($emp_no,'$birth_date','$first_name','$last_name','$gender','$hire_date')";
-        $conn->exec($insert);
+        foreach ($grupoEmpleados as $numEmp => $empleado) {
+                //obtengo de cada empleado la clave de la posicion que quiero obtener 
+                $emp_no = $empleado['emp_no']; //las comillas simples sino salta error
+                $birth_date = $empleado['birth_date'];
+                $first_name = $empleado['first_name'];
+                $last_name = $empleado['last_name'];
+                $gender = $empleado['gender'];
+                $hire_date = $empleado['hire_date'];
+
+                $insert = "INSERT INTO employees (emp_no,birth_date,first_name,last_name,gender,hire_date) 
+                VALUES ($emp_no,'$birth_date','$first_name','$last_name','$gender','$hire_date')";
+                $conn->exec($insert);
+        }
 
 	}catch(PDOException $e){
 		 echo "Error: ", $e-> getMessage();
 	}
 }
 
-function alta_dept_emp($conn,$emp_no,$dept_no,$hire_date,$to_date){
+function alta_dept_emp($conn,$grupoEmpleados){
     try {
-        $insert = "INSERT INTO dept_emp (emp_no,dept_no,from_date,to_date) 
-        VALUES ($emp_no,'$dept_no','$hire_date','$to_date')";
-        $conn->exec($insert);
+        foreach ($grupoEmpleados as $numEmp => $empleado) {
+            //obtengo de cada empleado la clave de la posicion que quiero obtener 
+            $emp_no = $empleado['emp_no']; 
+            $dept_no = $empleado['dept_no'];
+            $from_date = $empleado['hire_date'];
+            $to_date = $empleado['to_date'];
+
+            $insert = "INSERT INTO dept_emp (emp_no,dept_no,from_date,to_date) 
+            VALUES ($emp_no,'$dept_no','$from_date','$to_date')";
+            $conn->exec($insert);
+        }
 
 	}catch(PDOException $e){
 		 echo "Error: ", $e-> getMessage();
 	}
 }
 
-function alta_salaries_emp($conn,$emp_no,$salary,$hire_date,$to_date){
+function alta_salaries_emp($conn,$grupoEmpleados){
     try {
-        $insert = "INSERT INTO salaries (emp_no,salary,from_date,to_date) 
-        VALUES ($emp_no,$salary,'$hire_date','$to_date')";
-        $conn->exec($insert);
+        foreach ($grupoEmpleados as $numEmp => $empleado) {
+            //obtengo de cada empleado la clave de la posicion que quiero obtener 
+            $emp_no = $empleado['emp_no']; 
+            $salary= $empleado['salary'];
+            $from_date = $empleado['hire_date'];
+            $to_date = $empleado['to_date'];
+
+            $insert = "INSERT INTO salaries (emp_no,salary,from_date,to_date) 
+            VALUES ($emp_no,$salary,'$from_date','$to_date')";
+            $conn->exec($insert);
+        }
+    
 
 	}catch(PDOException $e){
 		 echo "Error: ", $e-> getMessage();
 	}
 }
 
-function alta_titles_emp($conn,$emp_no,$title,$hire_date,$to_date){
+function alta_titles_emp($conn,$grupoEmpleados){
     try {
-        $insert = "INSERT INTO titles (emp_no,title,from_date,to_date) 
-        VALUES ($emp_no,'$title','$hire_date','$to_date')";
-        $conn->exec($insert);
+        foreach ($grupoEmpleados as $numEmp => $empleado) {
+            //obtengo de cada empleado la clave de la posicion que quiero obtener 
+            $emp_no = $empleado['emp_no']; 
+            $title= $empleado['title'];
+            $from_date = $empleado['hire_date'];
+            $to_date = $empleado['to_date'];
+
+            $insert = "INSERT INTO titles (emp_no,title,from_date,to_date) 
+            VALUES ($emp_no,'$title','$from_date','$to_date')";
+            $conn->exec($insert);
+        }
 
 	}catch(PDOException $e){
 		 echo "Error: ", $e-> getMessage();

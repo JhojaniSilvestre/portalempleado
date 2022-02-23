@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $gender = limpiar($_POST["genero"]);
         $dept_no = limpiar($_POST["departamento"]);
         $title = limpiar($_POST["cargo"]);
-        $salary = limpiar($_POST["salario"]);
+        $salary = intval(limpiar($_POST["salario"]));
         $hire_date = limpiar($_POST["hire_date"]);
         $to_date = limpiar($_POST["to_date"]);
 
@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             //dejamos el num de empleado al inicial disponible
             $_SESSION['emp_no'] = generarNumEmp($conn);
             $emp_no = $_SESSION['emp_no'];
+            echo "grupo empleados vaciado";
         } 
                
         if (isset($_POST['agregar'])) {//si el num emp no existe en el grupo
@@ -75,19 +76,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         /* guardo el array de empleados en la sesion grupo y su num emp*/
         $_SESSION['grupo'] = $grupoEmpleados;
         $_SESSION['emp_no'] = $emp_no;
-        var_dump($_SESSION['grupo']);
-        /*
-        else{
-            alta_empleado($conn,$emp_no,$birth_date,$first_name,$last_name,$gender,$hire_date);
-    
-            alta_dept_emp($conn,$emp_no,$dept_no,$hire_date,$to_date);
+        //var_dump($_SESSION['grupo']);
         
-            alta_salaries_emp($conn,$emp_no,$salary,$hire_date,$to_date);
+        if (isset($_POST['alta'])) {
+
+            alta_empleado($conn,$grupoEmpleados);
+
+            alta_dept_emp($conn,$grupoEmpleados);
         
-            alta_titles_emp($conn,$emp_no,$title,$hire_date,$to_date);
+            alta_salaries_emp($conn,$grupoEmpleados);
+        
+            alta_titles_emp($conn,$grupoEmpleados);
     
-            echo "Empleado dado de alta correctamente";
-        }*/
+            echo "Empleados dados de alta correctamente";
+
+            //una vez acabadas las inserciones, vaciamos el array e inicializamos el num emp
+            $grupoEmpleados = array();
+            $_SESSION['grupo'] = $grupoEmpleados;
+            //dejamos el num de empleado al inicial disponible
+            $_SESSION['emp_no'] = generarNumEmp($conn);
+            $emp_no = $_SESSION['emp_no'];            
+            
+        }
+        
 }
 
 //llamo a la vista del alta de empleados - contiene el form 

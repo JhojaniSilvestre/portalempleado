@@ -61,7 +61,7 @@
                         Fecha baja <input type="date" name="to_date" class="form-control">
                     </div>
                     <input type="submit" value="Agregar" name="agregar" class="btn btn-warning disabled">
-                    <input type="submit" name="submit" value="Dar de alta" class="btn btn-warning disabled">
+                    <input type="submit" name="alta" value="Dar de alta" class="btn btn-warning disabled">
                     <input type="submit" value="Vaciar" name="vaciar" class="btn btn-warning disabled">                    
                     <input type="submit" value="Volver" name="volver" class="btn btn-warning disabled">
                     </form>
